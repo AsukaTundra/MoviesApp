@@ -1,0 +1,49 @@
+.item {
+  display: flex;
+  margin-top: 40px;
+  width: 451px;
+  height: 279px;
+  background-color: white;
+  box-shadow: rgba(109, 114, 120, 0.2) 0px 8px 24px;
+}
+
+.description {
+  padding: 10px 15px 10px 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.genres {
+  margin-top: 5px;
+}
+
+.genre {
+  display: inline-block;
+  padding: 2px 5px;
+  line-height: 20px;
+  margin: 0 2px;
+  border: 2px rgb(201, 201, 201) solid;
+  border-radius: 3px;
+  background-color: #fafafa;
+  color: #000000;
+}
+
+.releaseDate {
+  font-size: 14px;
+  margin-top: 5px;
+  color: rgb(159, 158, 158);
+}
+
+.voteAverage {
+  margin-top: 5px;
+  display: none;
+}
+
+.overview {
+  font-size: 14px;
+  margin-top: 5px;
+}
