@@ -4,3 +4,19 @@
   height: 100%;
   margin: 0 auto;
 }
+
+.movies-app-offline {
+  margin-top: 10px;
+  width: 100%;
+  margin: auto auto;
+}
+
+.errorDiv {
+  margin-top: 20px;
+}
+
+.loadingSpin {
+  width: 32px;
+  height: 32px;
+  margin: 500px auto;
+}
