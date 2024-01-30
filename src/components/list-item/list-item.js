@@ -10,10 +10,10 @@ function ListItem({ filmData }) {
       <Item
         key={Math.random()}
         title={data.title}
-        releaseDate={data.release_date}
-        voteAverage={data.vote_average}
+        releaseDate={data.releaseDate}
+        voteAverage={data.voteAverage}
         overview={data.overview}
-        poster={data.poster_path}
+        poster={data.poster}
       />
     );
   });

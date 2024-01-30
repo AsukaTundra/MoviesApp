@@ -1,7 +1,7 @@
 import React from 'react';
 import { Online, Offline } from 'react-detect-offline';
 
-import FetchFilms from '../services/fetch-films';
+import sortDataFilms from '../services/sort-data';
 
 import './movies-app.css';
 import MainMenu from './main-menu';
@@ -25,7 +25,7 @@ export default class MoviesApp extends React.Component {
     const { isLoaded, isError, filmData } = this.state;
 
     if (!isLoaded && !isError) {
-      FetchFilms().then((data) => {
+      sortDataFilms().then((data) => {
         if (data instanceof Error) {
           this.setState({
             isError: true,
