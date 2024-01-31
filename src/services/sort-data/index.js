@@ -1,3 +1,3 @@
-import sortDataFilms from './sort-data';
+import SortDataFilms from './sort-data';
 
-export default sortDataFilms;
+export default SortDataFilms;

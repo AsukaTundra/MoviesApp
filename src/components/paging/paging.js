@@ -1,11 +1,12 @@
+import React from 'react';
 import { Pagination } from 'antd';
 
 import './paging.css';
 
-function Paging() {
+function Paging({ currentPage, eventPage }) {
   return (
     <div className="paging">
-      <Pagination defaultCurrent={1} total={50} />
+      <Pagination simple current={currentPage} total={500} showSizeChanger={false} onChange={eventPage} />
     </div>
   );
 }

@@ -1,15 +1,14 @@
 import React from 'react';
 import { Online, Offline } from 'react-detect-offline';
 
-import sortDataFilms from '../services/sort-data';
-
 import './movies-app.css';
-import MainMenu from './main-menu';
-import Search from './search';
-import ListItem from './list-item';
-import Paging from './paging';
-import SpinLoading from './spin-loading';
-import AlertError from './alert-error';
+import SortDataFilms from '../../services/sort-data';
+import MainMenu from '../main-menu';
+import Search from '../search';
+import ListItem from '../list-item';
+import Paging from '../paging';
+import SpinLoading from '../spin-loading';
+import AlertError from '../alert-error';
 
 export default class MoviesApp extends React.Component {
   constructor() {
@@ -18,14 +17,49 @@ export default class MoviesApp extends React.Component {
       isLoaded: false,
       isError: false,
       filmData: [],
+      search: '',
+      page: 1,
     };
   }
 
-  render() {
-    const { isLoaded, isError, filmData } = this.state;
+  componentDidMount() {
+    this.fetchToServer();
+  }
 
+  componentDidUpdate() {
+    this.fetchToServer();
+  }
+
+  eventSearch = (value) => {
+    if (value.trim()) {
+      this.setState(() => {
+        return {
+          isLoaded: false,
+          search: value,
+          page: 1,
+        };
+      });
+    }
+  };
+
+  eventPage = (value) => {
+    if (this.state.page < value) {
+      document.body.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+    this.setState(() => {
+      return {
+        isLoaded: false,
+        page: value,
+      };
+    });
+  };
+
+  fetchToServer() {
+    const { isLoaded, isError, search, page } = this.state;
     if (!isLoaded && !isError) {
-      sortDataFilms().then((data) => {
+      SortDataFilms(search, page).then((data) => {
         if (data instanceof Error) {
           this.setState({
             isError: true,
@@ -38,7 +72,10 @@ export default class MoviesApp extends React.Component {
         }
       });
     }
+  }
 
+  render() {
+    const { isLoaded, isError, filmData, search, page } = this.state;
     const error =
       !isLoaded && isError ? (
         <div className="errorDiv">
@@ -58,11 +95,11 @@ export default class MoviesApp extends React.Component {
         <Online>
           <div className="movies-app">
             <MainMenu />
-            <Search />
+            <Search currentSearch={search} eventSearch={this.eventSearch} />
             {error}
             {loading}
             {content}
-            <Paging />
+            <Paging currentPage={page} eventPage={this.eventPage} />
           </div>
         </Online>
 

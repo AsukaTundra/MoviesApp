@@ -1,4 +1,4 @@
-async function FetchFilms() {
+async function FetchFilms(search, page) {
   const options = {
     method: 'GET',
     headers: {
@@ -9,7 +9,7 @@ async function FetchFilms() {
   };
 
   const filmsArray = await fetch(
-    'https://api.themoviedb.org/3/search/movie?query=return&include_adult=false&language=en-US&page=1',
+    `https://api.themoviedb.org/3/search/movie?query=${search}&include_adult=false&language=en-US&page=${page}`,
     options
   )
     .then((response) => {

@@ -4,11 +4,7 @@ import './error.css';
 
 function AlertError({ message }) {
   return (
-    <Space
-      direction="vertical"
-      style={{
-        width: '100%',
-      }}>
+    <Space className="space" direction="vertical">
       <Alert message={message} type="error" banner />
     </Space>
   );

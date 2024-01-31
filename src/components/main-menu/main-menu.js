@@ -13,6 +13,7 @@ function MainMenu() {
       key: 'rated',
     },
   ];
+
   return (
     <div className="main-menu">
       <Menu mode="horizontal" items={menuItem} />
