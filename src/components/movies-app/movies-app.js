@@ -2,12 +2,12 @@ import React from 'react';
 import { Online, Offline } from 'react-detect-offline';
 
 import './movies-app.css';
-import SortDataFilms from '../../services/sort-data';
+import FetchFilms from '../../services/fetch-films';
 import MainMenu from '../main-menu';
-import Search from '../search';
 import ListItem from '../list-item';
-import Paging from '../paging';
 import SpinLoading from '../spin-loading';
+import Search from '../search';
+import Paging from '../paging';
 import AlertError from '../alert-error';
 
 export default class MoviesApp extends React.Component {
@@ -56,10 +56,10 @@ export default class MoviesApp extends React.Component {
     });
   };
 
-  fetchToServer() {
+  fetchToServer = () => {
     const { isLoaded, isError, search, page } = this.state;
     if (!isLoaded && !isError) {
-      SortDataFilms(search, page).then((data) => {
+      FetchFilms(search, page).then((data) => {
         if (data instanceof Error) {
           this.setState({
             isError: true,
@@ -72,7 +72,7 @@ export default class MoviesApp extends React.Component {
         }
       });
     }
-  }
+  };
 
   render() {
     const { isLoaded, isError, filmData, search, page } = this.state;

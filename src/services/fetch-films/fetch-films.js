@@ -1,3 +1,5 @@
+import SortData from '../sort-data/sort-data';
+
 async function FetchFilms(search, page) {
   const options = {
     method: 'GET',
@@ -13,14 +15,13 @@ async function FetchFilms(search, page) {
     options
   )
     .then((response) => {
-      // проврека ошибки
       if (!response.ok) {
         throw new Error('Failed fetch');
       }
       return response.json();
     })
     .catch((error) => error);
-  return filmsArray;
+  return SortData(filmsArray);
 }
 
 export default FetchFilms;
