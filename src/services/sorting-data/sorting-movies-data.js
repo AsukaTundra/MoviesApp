@@ -9,14 +9,14 @@ function ifNotReleaseDate(date) {
 
 function ifNotPoster(urlPoster) {
   if (urlPoster) {
-    return <img src={`https://image.tmdb.org/t/p/w200/${urlPoster}`} alt="film poster" />;
+    return <img className="poster" src={`https://image.tmdb.org/t/p/w200/${urlPoster}`} alt="film poster" />;
   }
   return null;
 }
 
 function antiBigDiscription(discription, urlPoster) {
   if (discription) {
-    const maxWords = urlPoster ? 120 : 300;
+    const maxWords = urlPoster ? 100 : 300;
     if (discription.length > maxWords) {
       const dotX3 = '...';
       return discription.substring(0, discription.indexOf(' ', maxWords)) + dotX3;
@@ -26,17 +26,17 @@ function antiBigDiscription(discription, urlPoster) {
   return discription;
 }
 
-function SortData(unSortedData) {
+function SortMoviesData(unSortedData) {
   const sortedData = [];
   try {
     unSortedData.results.forEach((data) => {
-      const { title } = data;
+      const { id, title, rating, genre_ids: genres } = data;
       let { release_date: releaseDate, overview, poster_path: poster, vote_average: voteAverage } = data;
       releaseDate = ifNotReleaseDate(releaseDate);
       poster = ifNotPoster(poster);
       overview = antiBigDiscription(overview, poster);
       voteAverage = voteAverage.toFixed(1);
-      sortedData.push({ title, releaseDate, voteAverage, overview, poster });
+      sortedData.push({ id, title, releaseDate, voteAverage, overview, poster, rating, genres });
     });
   } catch (error) {
     return error;
@@ -44,4 +44,4 @@ function SortData(unSortedData) {
   return sortedData;
 }
 
-export default SortData;
+export default SortMoviesData;

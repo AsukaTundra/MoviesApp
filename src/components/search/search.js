@@ -2,7 +2,7 @@ import { Input } from 'antd';
 
 import './search.css';
 
-function Search({ search, eventSearch }) {
+function Search({ eventSearch }) {
   const debounce = (fn, debounceTime) => {
     let tme;
     return function func() {
@@ -16,7 +16,7 @@ function Search({ search, eventSearch }) {
 
   return (
     <div className="search">
-      <Input placeholder="Type to search..." value={search} onChange={(e) => reportValueDebounce(e.target.value)} />
+      <Input placeholder="Type to search..." onChange={(e) => reportValueDebounce(e.target.value)} />
     </div>
   );
 }

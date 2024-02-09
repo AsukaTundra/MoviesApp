@@ -26,12 +26,15 @@
     "quotes": ["error", "single"],
     "react/react-in-jsx-scope": "off",
     "react/prop-types": 0,
-    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-param-reassign": ["error", { "props": false }],
     "react/destructuring-assignment": 0,
-    "react/forbid-prop-types": ["error", { "forbid": ["any"], "checkChildContextTypes": false }],
-    "import/no-unresolved": [2, { "caseSensitive": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/forbid-prop-types": ["error", { "forbid": ["any"], "checkChildContextTypes": false }],
+    "no-alert": "off",
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+    "no-restricted-syntax": 0,
+    "no-param-reassign": ["error", { "props": false }],
+    "import/no-cycle": 0,
+    "import/no-unresolved": [2, { "caseSensitive": false }],
     "import/order": [
       2,
       {
@@ -47,7 +50,7 @@
         "parser": "flow",
         "trailingComma": "es5",
         "endOfLine": "auto",
-        "printWidth": 120,
+        "printWidth": 150,
         "bracketSpacing": true,
         "bracketSameLine": true
       }

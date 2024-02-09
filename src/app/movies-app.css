@@ -5,13 +5,13 @@
   margin: 0 auto;
 }
 
-.movies-app-offline {
+.alertOffline {
   margin-top: 10px;
   width: 100%;
   margin: auto auto;
 }
 
-.errorDiv {
+.alertError {
   margin-top: 20px;
 }
 
@@ -19,4 +19,8 @@
   width: 32px;
   height: 32px;
   margin: 500px auto;
+}
+
+.loadingOutlined {
+  font-size: 24px;
 }

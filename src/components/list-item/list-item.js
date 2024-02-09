@@ -2,32 +2,28 @@ import React from 'react';
 import { Alert, Flex } from 'antd';
 
 import './list-item.css';
+
 import Item from '../item';
 
-function ListItem({ filmData }) {
+function ListItem({ dataMovies, eventRequestAddRating, eventRequestDeleteRating }) {
   let key = 0;
-
   function assemblyListItem() {
-    return filmData.map((data) => {
+    return dataMovies.map((data) => {
       key += 1;
       return (
         <Item
           key={key}
-          title={data.title}
-          releaseDate={data.releaseDate}
-          voteAverage={data.voteAverage}
-          overview={data.overview}
-          poster={data.poster}
+          data={data}
+          eventRequestAddRating={eventRequestAddRating}
+          eventRequestDeleteRating={eventRequestDeleteRating}
         />
       );
     });
   }
 
   const items =
-    filmData.length === 0 ? (
-      <div className="noResultsDiv">
-        <Alert message="No results" type="info" banner />
-      </div>
+    dataMovies.length === 0 ? (
+      <Alert className="noResultsDiv" message="No results" type="info" banner />
     ) : (
       assemblyListItem()
     );

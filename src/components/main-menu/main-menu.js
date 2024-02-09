@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 
 import './main-menu.css';
 
-function MainMenu() {
+function MainMenu({ eventMenu }) {
   const menuItem = [
     {
       label: 'Search',
@@ -16,7 +16,7 @@ function MainMenu() {
 
   return (
     <div className="main-menu">
-      <Menu mode="horizontal" items={menuItem} />
+      <Menu mode="horizontal" defaultSelectedKeys="search" items={menuItem} onClick={(e) => eventMenu(e.key)} />
     </div>
   );
 }
