@@ -2,4 +2,7 @@
   width: 142px;
   margin: 0 auto;
   padding-top: 20px;
+  @media (width < 1010px) {
+    padding-top: 5px;
+  }
 }

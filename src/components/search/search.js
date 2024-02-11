@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { Input } from 'antd';
 
-import './search.css';
+import './search.scss';
 
 function Search({ eventSearch }) {
   const debounce = (fn, debounceTime) => {
@@ -22,3 +23,11 @@ function Search({ eventSearch }) {
 }
 
 export default Search;
+
+Search.defaultProps = {
+  eventSearch: () => {},
+};
+
+Search.propTypes = {
+  eventSearch: PropTypes.func,
+};

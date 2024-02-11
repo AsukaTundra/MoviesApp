@@ -1,7 +1,9 @@
 import { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { Rate } from 'antd';
+import { format } from 'date-fns';
 
-import './item.css';
+import './item.scss';
 
 import { context } from '../../app/movies-app';
 
@@ -19,7 +21,7 @@ function calculationGenres(genres) {
   itemGenres = itemGenres.map((item) => {
     key += 1;
     return (
-      <div key={key} className="genre">
+      <div key={key} className="item--genre">
         {item}
       </div>
     );
@@ -44,18 +46,34 @@ function calculationRatedColor(vote) {
   return dataColor[Math.floor(vote)];
 }
 
+function ifNotPoster(urlPoster) {
+  if (urlPoster) {
+    return <img className="item--poster" src={`https://image.tmdb.org/t/p/w200/${urlPoster}`} alt="film poster" />;
+  }
+  return null;
+}
+
+function ifNotReleaseDate(date) {
+  if (date) {
+    return <p className="item--releaseDate">{format(new Date(Date.parse(date)), 'PP')}</p>;
+  }
+  return null;
+}
+
 function Item({ data, eventRequestAddRating, eventRequestDeleteRating }) {
   const { id, title, releaseDate, voteAverage, overview, poster, rating, genres } = data;
 
   const itemGenres = calculationGenres(genres);
   const colorVoteAverage = calculationRatedColor(voteAverage);
+  const itemPoster = ifNotPoster(poster);
+  const itemReleaseDate = ifNotReleaseDate(releaseDate);
 
-  let itemRate = <Rate className="rate" count={10} onChange={(number) => eventRequestAddRating(id, number)} />;
+  let itemRate = <Rate className="item--rate" count={10} onChange={(number) => eventRequestAddRating(id, number)} />;
   let delButton = null;
   if (rating) {
     itemRate = (
       <Rate
-        className="rate"
+        className="item--rate"
         disabled
         value={rating}
         count={10}
@@ -63,7 +81,7 @@ function Item({ data, eventRequestAddRating, eventRequestDeleteRating }) {
       />
     );
     delButton = (
-      <button className="deleteButton" type="button" onClick={() => eventRequestDeleteRating(id)}>
+      <button className="item--deleteButton" type="button" onClick={() => eventRequestDeleteRating(id)}>
         X
       </button>
     );
@@ -72,15 +90,15 @@ function Item({ data, eventRequestAddRating, eventRequestDeleteRating }) {
   return (
     <div className="item">
       {delButton}
-      {poster}
-      <div className="description">
-        <div className={`rated ${colorVoteAverage}`}>
-          <p className="voteAverage">{voteAverage}</p>
+      {itemPoster}
+      <div className="item__description">
+        <div className={`item__rated ${colorVoteAverage}`}>
+          <p className="item--voteAverage">{voteAverage}</p>
         </div>
-        <h2 className="title">{title}</h2>
-        {releaseDate}
-        <div className="genres">{itemGenres}</div>
-        <p className="overview">{overview}</p>
+        <h2 className="item--title">{title}</h2>
+        {itemReleaseDate}
+        <div className="item__genres">{itemGenres}</div>
+        <p className="item--overview">{overview}</p>
         {itemRate}
       </div>
     </div>
@@ -88,3 +106,14 @@ function Item({ data, eventRequestAddRating, eventRequestDeleteRating }) {
 }
 
 export default Item;
+
+Item.defaultProps = {
+  eventRequestAddRating: () => {},
+  eventRequestDeleteRating: () => {},
+};
+
+Item.propTypes = {
+  data: PropTypes.object.isRequired,
+  eventRequestAddRating: PropTypes.func,
+  eventRequestDeleteRating: PropTypes.func,
+};

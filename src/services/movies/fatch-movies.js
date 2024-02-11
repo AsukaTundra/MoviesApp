@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import SortData from '../sorting-data/sorting-movies-data';
 
 async function Movies(search, page) {
@@ -16,3 +18,8 @@ async function Movies(search, page) {
 }
 
 export default Movies;
+
+Movies.propTypes = {
+  search: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+};

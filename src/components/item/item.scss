@@ -3,33 +3,43 @@
   display: flex;
   margin-top: 30px;
   width: 451px;
-  height: 279px;
+  height: 280px;
   background-color: white;
   box-shadow: rgba(109, 114, 120, 0.2) 0px 8px 24px;
   overflow: hidden;
+
+  @media (width < 1010px) {
+    height: 260px;
+    display: block;
+    margin-top: 10px;
+  }
 }
 
-.description {
+.item__description {
   width: 100%;
   padding: 10px 15px 10px 15px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.title {
+.item--title {
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
 }
 
-.genres {
+.item__genres {
   margin-top: 5px;
+
+  @media (width < 1010px) {
+    margin: 10px 20px 0 0;
+  }
 }
 
-.genre {
+.item--genre {
   display: inline-block;
   padding: 1px 3px;
   line-height: 20px;
-  margin: 1px 1px;
+  margin: 2px 2px;
   border: 2px rgb(201, 201, 201) solid;
   border-radius: 3px;
   font-size: 14px;
@@ -38,14 +48,18 @@
   color: #000000;
 }
 
-.releaseDate {
+.item--releaseDate {
   font-size: 14px;
   margin-top: 5px;
   color: rgb(159, 158, 158);
   line-height: 14px;
+
+  @media (width < 1010px) {
+    margin-top: 10px;
+  }
 }
 
-.rated {
+.item__rated {
   margin-right: -4px;
   height: 40px;
   width: 40px;
@@ -54,6 +68,10 @@
   box-sizing: border-box;
   text-align: center;
   border-radius: 50%;
+
+  @media (width < 1010px) {
+    margin-right: 26px;
+  }
 }
 
 .rated-clr-r { 
@@ -72,26 +90,33 @@
   border-color:  #66E900;
 }
 
-.voteAverage {
+.item--voteAverage {
   margin-top: 3px;
   margin-left: 1px;
-  /* display: none; */
 }
 
-.overview {
+.item--overview {
   font-size: 14px;
   line-height: 20px;
   margin-top: 5px;
+
+  @media (width < 1010px) {
+    margin-right: 25px;
+  }
 }
 
-.rate {
+.item--rate {
   position: absolute;
   bottom: 6px;
   right: 6px;
   font-size: 16px;
+
+  @media (width < 1010px) {
+    font-size: 20px;
+  }
 }
 
-.deleteButton {
+.item--deleteButton {
   position: absolute;
   bottom: 10px;
   left: 10px;
@@ -101,4 +126,12 @@
   background-color: red;
   border: 1px solid black;
   border-radius: 50%;
+}
+
+@media (width < 1010px) {
+  .item--poster {
+    float: left;
+    margin: 10px 10px;
+    height: 140px;
+  }
 }

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 async function AddRating(sessionId, filmId, ratingValue) {
   const options = {
     method: 'POST',
@@ -18,3 +20,9 @@ async function AddRating(sessionId, filmId, ratingValue) {
 }
 
 export default AddRating;
+
+AddRating.propTypes = {
+  sessionId: PropTypes.number.isRequired,
+  filmId: PropTypes.number.isRequired,
+  ratingValue: PropTypes.number.isRequired,
+};

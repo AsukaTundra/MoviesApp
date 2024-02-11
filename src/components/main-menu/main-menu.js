@@ -1,6 +1,7 @@
+import PropTypes from 'prop-types';
 import { Menu } from 'antd';
 
-import './main-menu.css';
+import './main-menu.scss';
 
 function MainMenu({ eventMenu }) {
   const menuItem = [
@@ -22,3 +23,11 @@ function MainMenu({ eventMenu }) {
 }
 
 export default MainMenu;
+
+MainMenu.defaultProps = {
+  eventMenu: () => {},
+};
+
+MainMenu.propTypes = {
+  eventMenu: PropTypes.func,
+};

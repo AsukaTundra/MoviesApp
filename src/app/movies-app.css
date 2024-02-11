@@ -1,26 +1,28 @@
 .movies-app {
   background-color: white;
-  width: 1010px;
+  max-width: 1010px;
+  min-width: 380px;
+  width: auto;
   height: 100%;
   margin: 0 auto;
+}
+
+.movies-app--alertError {
+  margin-top: 20px;
+}
+
+.movies-app__loadingSpin {
+  width: 32px;
+  height: 32px;
+  margin: 500px auto;
+}
+
+.movies-app--loadingOutlined {
+  font-size: 24px;
 }
 
 .alertOffline {
   margin-top: 10px;
   width: 100%;
   margin: auto auto;
-}
-
-.alertError {
-  margin-top: 20px;
-}
-
-.loadingSpin {
-  width: 32px;
-  height: 32px;
-  margin: 500px auto;
-}
-
-.loadingOutlined {
-  font-size: 24px;
 }

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import SortData from '../sorting-data/sorting-movies-data';
 
 async function RatingList(sessionId, page) {
@@ -16,3 +18,8 @@ async function RatingList(sessionId, page) {
 }
 
 export default RatingList;
+
+RatingList.propTypes = {
+  sessionId: PropTypes.number.isRequired,
+  page: PropTypes.number.isRequired,
+};

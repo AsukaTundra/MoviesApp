@@ -1,0 +1,7 @@
+.search {
+  margin: 20px 30px 0 30px;
+  width: auto;
+  @media (width < 1010px) {
+    margin: 20px 12px 0 12px;
+  }
+}

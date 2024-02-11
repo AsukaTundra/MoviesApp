@@ -1,4 +1,6 @@
-async function AddRating(sessionId, filmId) {
+import PropTypes from 'prop-types';
+
+async function DeleteRating(sessionId, filmId) {
   const options = {
     method: 'DELETE',
     headers: {
@@ -16,4 +18,9 @@ async function AddRating(sessionId, filmId) {
   return deleteRatingResult;
 }
 
-export default AddRating;
+export default DeleteRating;
+
+DeleteRating.propTypes = {
+  sessionId: PropTypes.number.isRequired,
+  filmId: PropTypes.number.isRequired,
+};

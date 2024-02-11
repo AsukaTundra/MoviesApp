@@ -1,3 +1,3 @@
-import AddRating from './fetch-delete-rating';
+import DeleteRating from './fetch-delete-rating';
 
-export default AddRating;
+export default DeleteRating;

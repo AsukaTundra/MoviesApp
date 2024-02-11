@@ -16,14 +16,14 @@ import ListItem from '../components/list-item';
 import Search from '../components/search';
 import Paging from '../components/paging';
 
-export const context = createContext(null);
+export const context = createContext([]);
 
 export default class MoviesApp extends React.Component {
   constructor() {
     super();
     this.state = {
       guestSessionId: null,
-      indicatorLoad: false,
+      indicatorLoad: true,
       indicatorError: false,
       dataMovies: [],
       dataGenres: [],
@@ -105,7 +105,7 @@ export default class MoviesApp extends React.Component {
           this.setState({
             indicatorLoad: false,
           });
-        }, 250);
+        }, 350);
       })
       .catch(() => {
         alert('Server error, failed');
@@ -118,6 +118,7 @@ export default class MoviesApp extends React.Component {
       this.setState({
         indicatorLoad: false,
         currentMenu: valueNewMenu,
+        currentPage: 1,
       });
     }
   };
@@ -158,13 +159,13 @@ export default class MoviesApp extends React.Component {
       ) : null;
     const loadingSpin =
       !indicatorLoad && !indicatorError ? (
-        <div className="loadingSpin">
-          <Spin size="large" indicator={<LoadingOutlined className="loadingOutlined" spin />} />
+        <div className="movies-app__loadingSpin">
+          <Spin size="large" indicator={<LoadingOutlined className="movies-app--loadingOutlined" spin />} />
         </div>
       ) : null;
     const errorAlert =
       !indicatorLoad && indicatorError ? (
-        <Alert className="alertError" message="Server error, try again later..." type="error" banner />
+        <Alert className="movies-app--alertError" message="Server error, try again later..." type="error" banner />
       ) : null;
 
     return (

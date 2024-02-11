@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Alert, Flex } from 'antd';
 
 import './list-item.css';
@@ -36,3 +37,14 @@ function ListItem({ dataMovies, eventRequestAddRating, eventRequestDeleteRating 
 }
 
 export default ListItem;
+
+ListItem.defaultProps = {
+  eventRequestAddRating: () => {},
+  eventRequestDeleteRating: () => {},
+};
+
+ListItem.propTypes = {
+  dataMovies: PropTypes.array.isRequired,
+  eventRequestAddRating: PropTypes.func,
+  eventRequestDeleteRating: PropTypes.func,
+};
