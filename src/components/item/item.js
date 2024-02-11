@@ -9,24 +9,27 @@ import { context } from '../../app/movies-app';
 
 function calculationGenres(genres) {
   const genresList = useContext(context);
-  let itemGenres = [];
-  genres.forEach((element) => {
-    genresList.forEach((item) => {
-      if (item.id === element) {
-        itemGenres.push(item.name);
-      }
+  if (genresList.length) {
+    let itemGenres = [];
+    genres.forEach((element) => {
+      genresList.forEach((item) => {
+        if (item.id === element) {
+          itemGenres.push(item.name);
+        }
+      });
     });
-  });
-  let key = 0;
-  itemGenres = itemGenres.map((item) => {
-    key += 1;
-    return (
-      <div key={key} className="item--genre">
-        {item}
-      </div>
-    );
-  });
-  return itemGenres;
+    let key = 0;
+    itemGenres = itemGenres.map((item) => {
+      key += 1;
+      return (
+        <div key={key} className="item--genre">
+          {item}
+        </div>
+      );
+    });
+    return itemGenres;
+  }
+  return null;
 }
 
 function calculationRatedColor(vote) {

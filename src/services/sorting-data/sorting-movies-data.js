@@ -10,19 +10,15 @@ function antiBigDiscription(discription, urlPoster) {
   return discription;
 }
 
-function SortMoviesData(unSortedData) {
+async function SortMoviesData(unSortedData) {
   const sortedData = [];
-  try {
-    unSortedData.results.forEach((data) => {
-      const { id, title, rating, genre_ids: genres, poster_path: poster, release_date: releaseDate } = data;
-      let { overview, vote_average: voteAverage } = data;
-      overview = antiBigDiscription(overview, poster);
-      voteAverage = voteAverage.toFixed(1);
-      sortedData.push({ id, title, releaseDate, voteAverage, overview, poster, rating, genres });
-    });
-  } catch (error) {
-    return error;
-  }
+  unSortedData.results.forEach((data) => {
+    const { id, title, rating, genre_ids: genres, poster_path: poster, release_date: releaseDate } = data;
+    let { overview, vote_average: voteAverage } = data;
+    overview = antiBigDiscription(overview, poster);
+    voteAverage = voteAverage.toFixed(1);
+    sortedData.push({ id, title, releaseDate, voteAverage, overview, poster, rating, genres });
+  });
   return sortedData;
 }
 

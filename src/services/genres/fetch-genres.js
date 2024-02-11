@@ -11,7 +11,15 @@ async function GetGenres() {
     options
   )
     .then((response) => response.json())
-    .then((response) => response.genres);
+    .then((response) => {
+      if (response.genres) {
+        return response.genres;
+      }
+      return [];
+    })
+    .catch(() => {
+      return [];
+    });
   return genresData;
 }
 

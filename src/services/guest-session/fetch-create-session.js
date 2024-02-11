@@ -11,7 +11,13 @@ async function GuestSession() {
     options
   )
     .then((response) => response.json())
-    .then((response) => response.guest_session_id);
+    .then((response) => {
+      if (response.success) {
+        return response.guest_session_id;
+      }
+      return 0;
+    })
+    .catch(() => 0);
   return sessionId;
 }
 

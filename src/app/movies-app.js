@@ -23,6 +23,8 @@ export default class MoviesApp extends React.Component {
     super();
     this.state = {
       guestSessionId: null,
+      indicatorErrorGenres: false,
+      indicatorErrorSession: false,
       indicatorLoad: true,
       indicatorError: false,
       dataMovies: [],
@@ -43,31 +45,31 @@ export default class MoviesApp extends React.Component {
   }
 
   requestCreateSession = () => {
-    GuestSession()
-      .then((result) => {
+    GuestSession().then((result) => {
+      if (result) {
         this.setState({
           guestSessionId: result,
         });
-      })
-      .catch(() => {
+      } else {
         this.setState({
-          indicatorError: true,
+          indicatorErrorSession: true,
         });
-      });
+      }
+    });
   };
 
   requestLoadGenres = () => {
-    GetGenres()
-      .then((result) => {
+    GetGenres().then((result) => {
+      if (result.length) {
         this.setState({
           dataGenres: result,
         });
-      })
-      .catch(() => {
+      } else {
         this.setState({
-          indicatorError: true,
+          indicatorErrorGenres: true,
         });
-      });
+      }
+    });
   };
 
   requestMovies = () => {
@@ -93,7 +95,7 @@ export default class MoviesApp extends React.Component {
   eventRequestAddRating = (idMovies, valueRating) => {
     const { guestSessionId } = this.state;
     AddRating(guestSessionId, idMovies, valueRating).catch(() => {
-      alert('Server error, failed');
+      alert('Server error, try again later');
     });
   };
 
@@ -108,7 +110,7 @@ export default class MoviesApp extends React.Component {
         }, 350);
       })
       .catch(() => {
-        alert('Server error, failed');
+        alert('Server error, try again later');
       });
   };
 
@@ -147,7 +149,16 @@ export default class MoviesApp extends React.Component {
   };
 
   render() {
-    const { indicatorLoad, indicatorError, dataMovies, dataGenres, currentMenu, currentPage } = this.state;
+    const {
+      indicatorLoad,
+      indicatorError,
+      dataMovies,
+      dataGenres,
+      currentMenu,
+      currentPage,
+      indicatorErrorSession,
+      indicatorErrorGenres,
+    } = this.state;
     const searchField = currentMenu === 'search' ? <Search eventSearch={this.eventSearch} /> : null;
     const moviesList =
       indicatorLoad && !indicatorError ? (
@@ -167,11 +178,19 @@ export default class MoviesApp extends React.Component {
       !indicatorLoad && indicatorError ? (
         <Alert className="movies-app--alertError" message="Server error, try again later..." type="error" banner />
       ) : null;
+    const sessionError = indicatorErrorSession ? (
+      <p className="movies-app--sessionError">Error creating session, the rating sheet functions are unavailable.</p>
+    ) : null;
+    const genresError = indicatorErrorGenres ? (
+      <p className="movies-app--sessionError">Error loading the list of genres, genres are unavailable.</p>
+    ) : null;
 
     return (
       <>
         <Online>
           <div className="movies-app">
+            {sessionError}
+            {genresError}
             <context.Provider value={dataGenres}>
               <MainMenu eventMenu={this.eventMenu} />
               {searchField}
